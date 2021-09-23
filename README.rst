@@ -4,7 +4,7 @@ Overview
 This charm is intended as a subordinate charm to the nova-compute charm and its
 purpose is to set/override libvirt specific parameters such as IOPS per second.
 
-To achieve this goal, the charm employs libvirt specific commands such as
+To achieve this goal, the charm relies on libvirt specific commands such as
 ``virsh blkdeviotune``.
 
 Usage
