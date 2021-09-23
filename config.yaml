@@ -1,0 +1,15 @@
+options:
+  read-iops-sec:
+    type: int
+    default: 0
+    description: "specifies read I/O operations limit per second for each block device"
+  write-iops-sec:
+    type: int
+    default: 0
+    description: "specifies write I/O operations limit per second for each block device"
+  excluded-instances:
+    type: string
+    default: ""
+    description: "A space separated list of openstack instance ids to leave untouched"
+
+

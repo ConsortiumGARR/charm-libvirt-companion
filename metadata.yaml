@@ -1,0 +1,11 @@
+name: libvirt-companion
+summary: Configure libvirt parameters such as IOPS per second
+maintainer: Claudio Pisa <claudio.pisa@garr.it>
+description: Configure libvirt parameters such as IOPS per second
+tags:
+  - openstack
+subordinate: true
+requires:
+  requires-relation:
+    interface: nova-compute
+
