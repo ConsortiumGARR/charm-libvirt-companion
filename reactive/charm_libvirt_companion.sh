@@ -44,4 +44,9 @@ do_update() {
     do_blkdeviotuning
 }
 
+@hook 'config-changed'
+do_config_changed() {
+    do_blkdeviotuning
+}
+
 reactive_handler_main
