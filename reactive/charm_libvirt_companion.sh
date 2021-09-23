@@ -39,7 +39,7 @@ do_start() {
     do_blkdeviotuning
 }
 
-@hook 'update'
+@hook 'update-status'
 do_update() {
     do_blkdeviotuning
 }
