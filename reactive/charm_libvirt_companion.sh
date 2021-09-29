@@ -27,6 +27,7 @@ do_blkdeviotuning() {
     EXCLUDED_DOMAINS_GREP="$( config-get excluded_instances | sed -e 's/^/grep -v -e /g' -e 's/\ / -e /g')"
     DOMAINS="$( echo "$UUIDS" | $EXCLUDED_DOMAINS_GREP | awk '{print $1}' )"
     echo "$DOMAINS" | while read instance; do
+        juju-log "instance: $instance"
         DEVICES="$( virsh domblklist $instance | tail -n+3 | grep -v '^$' | awk '{print $1}')"
 	echo "$DEVICES" | while read device; do
 	    echo virsh blkdeviotune $instance $device --read-iops-sec $(config-get read_iops_sec) --write-iops-sec $(config-get write_iops_sec)
@@ -36,17 +37,23 @@ do_blkdeviotuning() {
 
 @hook 'start' 
 do_start() {
+    status-set maintenance "IOPS tuning"
     do_blkdeviotuning
+    status-set active
 }
 
 @hook 'update-status'
 do_update() {
+    status-set maintenance "IOPS tuning"
     do_blkdeviotuning
+    status-set active
 }
 
 @hook 'config-changed'
 do_config_changed() {
+    status-set maintenance "IOPS tuning"
     do_blkdeviotuning
+    status-set active
 }
 
 reactive_handler_main
