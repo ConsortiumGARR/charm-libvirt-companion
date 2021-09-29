@@ -4,8 +4,14 @@ maintainer: Claudio Pisa <claudio.pisa@garr.it>
 description: Configure libvirt parameters such as IOPS per second
 tags:
   - openstack
+series:
+  - xenial
+  - bionic
+  - focal
 subordinate: true
 requires:
-  requires-relation:
-    interface: nova-compute
+  juju-info:
+    interface: juju-info
+    scope: container
+
 
