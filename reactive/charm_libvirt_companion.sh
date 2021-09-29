@@ -41,7 +41,7 @@ do_blkdeviotuning() {
             DESIRED_WRITE_IOPS="$( config-get write-iops-sec )"
             juju-log "cr: $CURRENT_READ_IOPS cw: $CURRENT_WRITE_IOPS dr: $DESIRED_READ_IOPS dw: $DESIRED_WRITE_IOPS"
             if [ "$CURRENT_READ_IOPS" != "$DESIRED_READ_IOPS" ] || [ "$CURRENT_WRITE_IOPS" != "$DESIRED_WRITE_IOPS" ]; then
-                juju-log virsh blkdeviotune $instance $device --read-iops-sec $DESIRED_READ_IOPS --write-iops-sec $DESIRED_WRITE_IOPS
+                juju-log "virsh blkdeviotune $instance $device --read-iops-sec $DESIRED_READ_IOPS --write-iops-sec $DESIRED_WRITE_IOPS"
                 virsh blkdeviotune $instance $device --read-iops-sec $DESIRED_READ_IOPS --write-iops-sec $DESIRED_WRITE_IOPS
             fi
         done
